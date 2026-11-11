@@ -4,7 +4,7 @@ using namespace std;
 void markAsNotPrime(bool sieve[], int len, int current)
 {
 
-	for(int i = 2*len; i < len; i+=current)
+	for(int i = current*current; i < len; i+=current)
 	{
 		sieve[i] = true;
 	}
@@ -15,7 +15,6 @@ void sieveErathostenes(bool sieve[], int len)
 	{
 		if (!sieve[i])
 		{
-			cout << i << endl;
 			markAsNotPrime(sieve, len, i);
 		}
 
@@ -25,9 +24,18 @@ void sieveErathostenes(bool sieve[], int len)
 
 int main()
 {
-	constexpr int MAX_SIZE = 1024;
-	int n;
-	cin >> n;
-	bool sieve[MAX_SIZE]{0};
-	sieveErathostenes(sieve, n);
+	constexpr int SIZE = 1024;
+	bool sieveArr[SIZE];
+	for (size_t i = 0; i < SIZE; i++)
+	{
+		sieveArr[i] = 1;
+	}
+	sieve(sieveArr, SIZE);
+	
+	for (size_t i = 0; i < q; i++)
+	{
+		int n;
+		std::cin >> n;
+		std::cout << sieveArr[n];
+	}
 }  
