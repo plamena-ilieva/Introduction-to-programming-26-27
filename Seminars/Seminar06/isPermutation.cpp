@@ -1,29 +1,33 @@
 #include <iostream>
 using namespace std;
 
-int binarySearch(const int arr[], int len, int el)
-{
-	int left = 0;
-	int right = len - 1;
-
-	while (left <= right)
-	{
-		int mid = left + (right - left) / 2;
-				//left + right) / 2;
-		if (el > arr[mid])
-			left = mid + 1;
-		else if (el < arr[mid])
-			right = mid - 1;
-		else
-			return mid;
+bool isPermutation(const int arr1[], const int arr2[], size_t size1, size_t size2) {
+	if (size1 != size2) {
+		return false;
 	}
-	return -1;
+
+	constexpr int SIZE = 10;
+	int buff[SIZE]{};
+
+	for (size_t i = 0; i < size1; i++)
+	{
+		buff[arr1[i]]++;
+	}
+
+	for (size_t i = 0; i < size2; i++)
+	{
+		buff[arr2[i]]--;
+		if (buff[arr2[i]] < 0) {
+			return false;
+		}
+	}
+
+	for (size_t i = 0; i < SIZE; i++)
+	{
+		if (buff[i] != 0) {
+			return false;
+		}
+	}
+
+	return true;
 }
-
-
-int main()
-{
-	constexpr int size = 5;
-	int sortedArr[size] = { 1,5,12,15,20 };
-	cout << binarySearch(sortedArr, size, 15);
-}  
