@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-const int GRADES_COUNT = 5;
+constexpr int COLS = 20;
 
 int linearSearch(const int arr[], int len, int element)
 {
@@ -11,6 +11,17 @@ int linearSearch(const int arr[], int len, int element)
 			return i;
 	}
 	return -1;
+}
+
+bool linearSearchMatrix(const int arr[][COLS], size_t rows, int el) {
+	for (size_t i = 0; i < rows; i++)
+	{
+		if (linearSearch(arr[i], COLS, el) == true) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 int main()
